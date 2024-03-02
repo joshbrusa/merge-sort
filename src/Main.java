@@ -1,7 +1,11 @@
 package src;
 
 public class Main {
+    /**
+     * Merge sort algo.
+     */
     private static void mergeSort(int[] array) {
+        // base case
         if (array.length <= 1) {
             return;
         }
@@ -10,10 +14,12 @@ public class Main {
         int[] leftArray = new int[mid];
         int[] rightArray = new int[array.length - mid];
 
-        // Fill leftArray and rightArray
+        // fill leftArray
         for (int i = 0; i < mid; i++) {
             leftArray[i] = array[i];
         }
+
+        // fill rightArray
         for (int i = mid; i < array.length; i++) {
             rightArray[i - mid] = array[i];
         }
@@ -22,7 +28,7 @@ public class Main {
         mergeSort(leftArray);
         mergeSort(rightArray);
 
-        // Merge the sorted halves
+        // merge the sorted halves
         merge(leftArray, rightArray, array);
     }
 
@@ -31,7 +37,7 @@ public class Main {
         int rightLength = rightArray.length;
         int i = 0, j = 0, k = 0;
 
-        // Merge leftArray and rightArray into array
+        // merge leftArray and rightArray into array
         while (i < leftLength && j < rightLength) {
             if (leftArray[i] <= rightArray[j]) {
                 array[k++] = leftArray[i++];
@@ -40,17 +46,20 @@ public class Main {
             }
         }
 
-        // Copy remaining elements of leftArray
+        // copy remaining elements of leftArray
         while (i < leftLength) {
             array[k++] = leftArray[i++];
         }
 
-        // Copy remaining elements of rightArray
+        // copy remaining elements of rightArray
         while (j < rightLength) {
             array[k++] = rightArray[j++];
         }
     }
 
+    /**
+     * Prints an array.
+     */
     private static void printArray(int[] array) {
         for (int num : array) {
             System.out.print(num + " ");
@@ -60,12 +69,13 @@ public class Main {
 
     public static void main(String[] args) {
         int[] array = { 12, 11, 13, 5, 6, 7 };
-        System.out.println("Original array:");
+
+        System.out.println("original array:");
         printArray(array);
 
         mergeSort(array);
 
-        System.out.println("Sorted array:");
+        System.out.println("sorted array:");
         printArray(array);
     }
 }
